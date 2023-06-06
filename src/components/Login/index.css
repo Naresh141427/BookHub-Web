@@ -1,0 +1,178 @@
+.mobile-login-container {
+  min-height: 100vh;
+  background-color: #fff;
+
+  padding: 50px 40px;
+}
+
+.laptop-login-container {
+  display: none;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+}
+.image-container {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 20px;
+}
+
+.login-image {
+  width: 180px;
+  height: 180px;
+
+  border-radius: 50%;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.website-logo-container {
+  display: flex;
+  justify-content: center;
+
+  align-self: center;
+  margin-bottom: 20px;
+}
+
+.bookhub-logo {
+  height: 35px;
+  width: 35px;
+  align-self: center;
+}
+
+.logo-text {
+  font-family: 'Almendra SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #0284c7;
+
+  padding-top: 20px;
+}
+.input-container {
+  width: 95%;
+  max-width: 430px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.mb-label {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+
+  color: #5a7184;
+  margin-bottom: 8px;
+}
+
+.mb-input {
+  width: 100%;
+  padding: 10px;
+
+  background: #ffffff;
+  border: 1px solid #c3cad9;
+  border-radius: 8px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+
+  color: #183b56;
+
+  outline: none;
+}
+
+.login-button {
+  width: 95%;
+  max-width: 430px;
+  background: #0284c7;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+
+  color: #ffffff;
+
+  padding: 10px 0px;
+}
+.errmsg-container {
+  width: 95%;
+  max-width: 430px;
+  display: flex;
+  justify-content: flex-start;
+}
+.error-msg {
+  font-family: 'HK Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+
+  color: #ef4444;
+}
+
+@media screen and (min-width: 768px) {
+  .mobile-login-container {
+    display: none;
+  }
+  .laptop-login-container {
+    min-height: 100vh;
+
+    display: flex;
+  }
+  .lg-login-image {
+    height: 100vh;
+    width: 50%;
+  }
+  .lg-form-container {
+    height: 100vh;
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #9cd9c2;
+  }
+  .form-container {
+    width: 60%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+
+    background-color: #ffffff;
+    border-radius: 10px;
+
+    padding: 30px;
+  }
+  .bookhub-logo {
+    height: 40px;
+    width: 40px;
+  }
+  .logo-text {
+    font-size: 18px;
+  }
+  .error-msg {
+    font-size: 17px;
+  }
+}
