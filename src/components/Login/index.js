@@ -1,179 +1,116 @@
-import {Component} from 'react'
-import {Redirect} from 'react-router-dom'
+import {useState} from 'react'
 import Cookies from 'js-cookie'
 
 import './index.css'
 
-class Login extends Component {
-  state = {username: '', password: '', showErrMsg: false, errMsg: ''}
+const Login = props => {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [errmsg, setErrMsg] = useState('')
+  const [userErr, setUserErrMsg] = useState('')
+  const [passErr, setPassErrMsg] = useState('')
 
-  onEnteringUsername = event => {
-    this.setState({username: event.target.value})
+  const onEnteringUsername = e => {
+    setUserErrMsg('')
+    setUsername(e.target.value)
   }
 
-  onEnteringUserPassword = event => {
-    this.setState({password: event.target.value})
+  const onEnteringPassword = e => {
+    setPassErrMsg('')
+    setPassword(e.target.value)
   }
 
-  onSuccessFormSubmission = jwtToken => {
-    const {history} = this.props
+  const onEmptyUserDetails = e => {
+    if (!e.target.value) setUserErrMsg('*This field is required')
+  }
+  const onEmptyPasswordDetails = e => {
+    if (!e.target.value) setPassErrMsg('*This field is required')
+  }
+
+  const onSuccessFetch = jwtToken => {
+    const {history} = props
     Cookies.set('jwt_token', jwtToken, {expires: 30})
     history.replace('/')
   }
 
-  onFailureFormSubmission = errMsg => {
-    this.setState({errMsg, showErrMsg: true})
+  const onFailureFetch = errorMsg => {
+    setErrMsg(errorMsg)
   }
 
-  onSubmittingForm = async event => {
-    event.preventDefault()
+  const onSubmittingForm = async e => {
+    e.preventDefault()
 
-    const {username, password} = this.state
     const userDetails = {username, password}
-    console.log(userDetails)
-
-    const loginApi = 'https://apis.ccbp.in/login'
     const options = {
       method: 'POST',
       body: JSON.stringify(userDetails),
     }
 
-    const response = await fetch(loginApi, options)
+    const response = await fetch('https://apis.ccbp.in/login', options)
     const data = await response.json()
 
     if (response.ok) {
-      this.onSuccessFormSubmission(data.jwt_token)
-    } else {
-      this.onFailureFormSubmission(data.error_msg)
+      onSuccessFetch(data.jwt_token)
+      setUsername('')
+      setPassword('')
     }
+    onFailureFetch(data.error_msg)
   }
-
-  render() {
-    const {username, password, showErrMsg, errMsg} = this.state
-
-    const token = Cookies.get('jwt_token')
-
-    if (token !== undefined) {
-      return <Redirect to="/" />
-    }
-    return (
-      <>
-        {/* Mobile Login page */}
-        <div className="mobile-login-container">
-          <div className="login-container">
-            <div className="image-container">
-              <img
-                src="https://res.cloudinary.com/djugcf64d/image/upload/v1680919798/Rectangle_1467_q0eddi.png"
-                height="100%"
-                className="login-image"
-                alt="login logo"
-              />
-            </div>
-
-            <form className="form-container" onSubmit={this.onSubmittingForm}>
-              <div className="website-logo-container">
-                <img
-                  src="https://res.cloudinary.com/djugcf64d/image/upload/v1680943074/Group_7730_moxigd.png"
-                  className="bookhub-logo"
-                  alt="website logo"
-                />
-                <p className="logo-text">OOK HUB</p>
-              </div>
-
-              <div className="input-container">
-                <label htmlFor="username" className="mb-label">
-                  Username*
-                </label>
-                <input
-                  id="username"
-                  type="text"
-                  className="mb-input"
-                  placeholder="Enter the username"
-                  value={username}
-                  onChange={this.onEnteringUsername}
-                />
-              </div>
-
-              <div className="input-container">
-                <label htmlFor="username" className="mb-label">
-                  Password*
-                </label>
-                <input
-                  id="username"
-                  type="password"
-                  className="mb-input"
-                  placeholder="Enter the password"
-                  value={password}
-                  onChange={this.onEnteringUserPassword}
-                />
-              </div>
-              <button type="submit" className="login-button">
-                Login
-              </button>
-              <div className="errmsg-container">
-                {showErrMsg ? <p className="error-msg">{errMsg}</p> : null}
-              </div>
-            </form>
+  return (
+    <div className="mobile-login-container">
+      <div className="login-image-container">
+        <img
+          src="https://res.cloudinary.com/djugcf64d/image/upload/v1680919798/Rectangle_1467_q0eddi.png"
+          className="login-image"
+          alt="login book logo"
+        />
+      </div>
+      <div className="form-container">
+        <form className="form" onSubmit={onSubmittingForm}>
+          <div className="bookhub-text-container">
+            <img
+              src="https://res.cloudinary.com/djugcf64d/image/upload/v1680943074/Group_7730_moxigd.png"
+              className="bookhub-text"
+              alt="bookhub text logo"
+            />
+            <span className="special-text">ook Hub</span>
           </div>
-        </div>
-        {/* laptop LoginPage */}
-        <div className="laptop-login-container">
-          <img
-            src="https://res.cloudinary.com/djugcf64d/image/upload/v1680919798/Rectangle_1467_q0eddi.png"
-            className="lg-login-image"
-            alt="login"
+          <label className="label" htmlFor="username">
+            Username*
+          </label>
+          <input
+            type="text"
+            id="username"
+            className="user-input"
+            placeholder="Enter username"
+            name="username"
+            value={username}
+            onChange={onEnteringUsername}
+            onBlur={onEmptyUserDetails}
           />
-
-          <div className="lg-form-container">
-            <form className="form-container" onSubmit={this.onSubmittingForm}>
-              <div className="website-logo-container">
-                <img
-                  src="https://res.cloudinary.com/djugcf64d/image/upload/v1680943074/Group_7730_moxigd.png"
-                  className="bookhub-logo"
-                  alt="website logo"
-                />
-                <p className="logo-text">OOK HUB</p>
-              </div>
-
-              <div className="input-container">
-                <div className="input-container">
-                  <label htmlFor="username" className="mb-label">
-                    Username*
-                  </label>
-                  <input
-                    id="username"
-                    type="text"
-                    className="mb-input"
-                    placeholder="Enter the username"
-                    value={username}
-                    onChange={this.onEnteringUsername}
-                  />
-                </div>
-
-                <label htmlFor="username" className="mb-label">
-                  Password*
-                </label>
-                <input
-                  id="username"
-                  type="password"
-                  className="mb-input"
-                  placeholder="Enter the password"
-                  value={password}
-                  onChange={this.onEnteringUserPassword}
-                />
-              </div>
-              <button type="submit" className="login-button">
-                Login
-              </button>
-              <div className="errmsg-container">
-                {showErrMsg ? <p className="error-msg">{errMsg}</p> : null}
-              </div>
-            </form>
-          </div>
-        </div>
-      </>
-    )
-  }
+          {userErr && <p className="blur-error-msg">{userErr}</p>}
+          <label className="label" htmlFor="password">
+            Password*
+          </label>
+          <input
+            type="password"
+            id="password"
+            className="password-input"
+            placeholder="Enter password"
+            name="password"
+            value={password}
+            onChange={onEnteringPassword}
+            onBlur={onEmptyPasswordDetails}
+          />
+          {passErr && <p className="blur-error-msg">{passErr}</p>}
+          <button type="submit" className="login-btn">
+            Login
+          </button>
+          {errmsg && <p className="error-msg">{errmsg}</p>}
+        </form>
+      </div>
+    </div>
+  )
 }
 
 export default Login

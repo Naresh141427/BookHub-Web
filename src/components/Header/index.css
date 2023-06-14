@@ -1,0 +1,175 @@
+.lg-nav {
+  display: none;
+}
+
+.sm-nav {
+  width: 100vw;
+  background-color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+@media screen and (min-width: 325px) and (max-width: 768px) {
+  .sm-nav {
+    padding: 15px;
+  }
+}
+.bookhub-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+.bookhub-logo {
+  height: 20px;
+  width: 20px;
+}
+.logo-text {
+  color: #0284c7;
+  font-family: 'Almendra SC';
+  font-size: 16px;
+  font-weight: 400;
+  padding-top: 5px;
+}
+
+.menu-icon {
+  height: 15px;
+  width: 15px;
+  color: #475569;
+  cursor: pointer;
+  outline: none;
+}
+@media screen and (min-width: 325px) and (max-width: 768px) {
+  .bookhub-logo {
+    height: 33px;
+    width: 33px;
+  }
+  .logo-text {
+    font-size: 23px;
+    padding-top: 10px;
+  }
+  .menu-icon {
+    height: 25px;
+    width: 25px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .sm-nav {
+    display: none;
+  }
+  .lg-nav {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 60px;
+  }
+  .bookhub-logo {
+    height: 40px;
+    width: 50px;
+  }
+  .logo-text {
+    font-size: 27px;
+    padding-top: 15px;
+  }
+  .nav-items-container {
+    display: flex;
+    align-items: center;
+    padding-left: 0px;
+    list-style-type: none;
+  }
+  .link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  li {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+
+    color: #64748b;
+    margin-right: 35px;
+  }
+  .logout-button {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: #f8fafc;
+    padding: 10px 30px;
+    background: #0284c7;
+    border-radius: 4px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+  }
+}
+.sm-nav-items-container {
+  display: flex;
+  align-items: center;
+  background-color: #e5e5e5;
+  padding: 0px 20px;
+}
+
+.nav-lis-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 0px;
+  list-style-type: none;
+  margin-bottom: 0px;
+}
+
+.sm-nav-item {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+
+  color: #64748b;
+}
+
+.sm-logout-button {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  color: #f8fafc;
+  padding: 5px 16px;
+  background: #0284c7;
+  border-radius: 4px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+.close-icon {
+  height: 25px;
+  width: 25px;
+  color: #334155;
+}
+.sm-link {
+  text-decoration: none;
+}
+
+@media screen and (min-width: 325px) and (max-width: 768px) {
+  .sm-nav-item {
+    font-size: 18px;
+  }
+  .sm-logout-button {
+    padding: 8px 24px;
+    font-size: 18px;
+  }
+  .close-icon {
+    height: 38px;
+    width: 38px;
+  }
+}
