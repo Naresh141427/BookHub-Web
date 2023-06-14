@@ -33,7 +33,10 @@ const bookshelvesList = [
 const App = () => (
   <Switch>
     <Route exact path="/login" component={Login} />
+<<<<<<< HEAD
     <Route exact path="/" component={Home} />
+=======
+>>>>>>> e2e24e024053e86414d07e729f0e4053a5027da2
   </Switch>
 )
 
