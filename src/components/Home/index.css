@@ -1,18 +1,21 @@
 .lg-main-section {
   display: none;
 }
+.slick-item {
+  padding: 10px;
+}
 .main-section {
   min-height: 90vh;
   display: flex;
   flex-direction: column;
-  background: #e5e5e5;
+  background: #d3e8ec;
 }
 .loader-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 90vh;
-  background: #e5e5e5;
+  background: #d3e8ec;
 }
 
 .top-section-container {
@@ -61,7 +64,10 @@
   background-color: #fff;
   box-shadow: 0px 0px 0.443396px rgba(40, 41, 61, 0.08),
     0px 0.443396px 0.886792px rgba(96, 97, 112, 0.16);
-  padding: 15px 20px 40px 20px;
+  padding-top: 15px;
+  padding-bottom: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .top-books-title {
@@ -70,6 +76,7 @@
   font-weight: 600;
   font-size: 15px;
   color: #1e293b;
+  margin-left: 25px;
 }
 .footer-section {
   display: flex;
@@ -87,8 +94,8 @@
 }
 
 .social-app {
-  height: 15px;
-  width: 15px;
+  height: 20px;
+  width: 20px;
   color: #3d3c3c;
   cursor: pointer;
 }
@@ -96,11 +103,16 @@
   font-family: 'HK Grotesk';
   font-style: normal;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 18px;
   color: #3d3c3c;
   margin-top: 18px;
 }
-@media screen and (min-width: 325px) and (max-width: 768px) {
+.slick-prev:before,
+.slick-next:before {
+  color: #000;
+  font-size: 20px;
+}
+@media screen and (min-width: 354px) and (max-width: 768px) {
   .top-section-header {
     font-size: 25px;
   }
@@ -112,13 +124,6 @@
     padding: 10px;
     font-size: 15px;
     width: 100px;
-  }
-  .prev-arrow {
-    height: 30px;
-    width: 30px;
-    background: #989898;
-    color: #fff;
-    border: 1px solid red;
   }
   .top-books-title {
     font-size: 25px;
@@ -133,7 +138,12 @@
     width: 30px;
   }
   .contact-title {
-    font-size: 22px;
+    font-size: 25px;
+  }
+  .slick-prev:before,
+  .slick-next:before {
+    color: #000;
+    font-size: 20px;
   }
 }
 
@@ -143,12 +153,14 @@
 
 .logo-image {
   height: 100px;
-  width: 90%;
+  width: 150px;
+  padding: 0 20px;
 }
 
-@media screen and (min-width: 325px) and (max-width: 768px) {
+@media screen and (min-width: 354px) and (max-width: 768px) {
   .logo-image {
     height: 150px;
+    width: 170px;
   }
 }
 @media screen and (min-width: 769px) {
@@ -159,7 +171,7 @@
     min-height: 90vh;
     display: flex;
     flex-direction: column;
-    background: #e5e5e5;
+    background-color: #d3e8ec;
   }
   .top-section-container {
     width: 80%;
@@ -178,6 +190,7 @@
   }
   .logo-image {
     height: 250px;
+    width: 380px;
   }
   .top-books-title {
     font-size: 30px;
@@ -201,6 +214,11 @@
     width: 30px;
   }
   .contact-title {
+    font-size: 30px;
+  }
+  .slick-prev:before,
+  .slick-next:before {
+    color: #000;
     font-size: 30px;
   }
 }

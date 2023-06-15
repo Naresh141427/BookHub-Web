@@ -1,7 +1,10 @@
 import {Component} from 'react'
+import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 import {
   FaGoogle,
@@ -118,9 +121,9 @@ class Home extends Component {
         {booksData.map(each => {
           const {id, coverPic, authorName} = each
           return (
-            <div className="slick-item" key={id}>
+            <Link to={`/books/${id}`} className="slick-item" key={id}>
               <img className="logo-image" src={coverPic} alt={authorName} />
-            </div>
+            </Link>
           )
         })}
       </Slider>

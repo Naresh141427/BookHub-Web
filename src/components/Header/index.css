@@ -2,6 +2,21 @@
   display: none;
 }
 
+.link-item {
+  text-decoration: none;
+}
+.active-tab {
+  color: #0284c7;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  margin-right: 35px;
+}
+
 .sm-nav {
   width: 100vw;
   background-color: #fff;
@@ -10,8 +25,23 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+li {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+
+  color: #64748b;
+  margin-right: 35px;
+}
 @media screen and (min-width: 325px) and (max-width: 768px) {
   .sm-nav {
     padding: 15px;
@@ -67,6 +97,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 30px 60px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
   }
   .bookhub-logo {
     height: 40px;
@@ -81,6 +112,17 @@
     align-items: center;
     padding-left: 0px;
     list-style-type: none;
+  }
+  .active-tab {
+    color: #0284c7;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    margin-right: 35px;
   }
   .link {
     display: flex;
@@ -110,12 +152,19 @@
     outline: none;
     cursor: pointer;
   }
+  .active-tab {
+    color: #0284c7;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
 }
 .sm-nav-items-container {
   display: flex;
   align-items: center;
-  background-color: #e5e5e5;
+  background-color: #d3e8ec;
   padding: 0px 20px;
+  margin-bottom: 0px;
 }
 
 .nav-lis-container {

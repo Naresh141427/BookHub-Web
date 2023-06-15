@@ -4,6 +4,8 @@ import './App.css'
 
 import Login from './components/Login'
 import Home from './components/Home'
+import Shelf from './components/Shelf'
+import ProtectedRoutes from './components/ProtectedRoute/ProtectedRoute'
 
 // use the below bookshelvesList for rendering read status of book items in Bookshelves Route
 
@@ -33,10 +35,7 @@ const bookshelvesList = [
 const App = () => (
   <Switch>
     <Route exact path="/login" component={Login} />
-<<<<<<< HEAD
-    <Route exact path="/" component={Home} />
-=======
->>>>>>> e2e24e024053e86414d07e729f0e4053a5027da2
+    <ProtectedRoutes exact path="/" component={Home} />
   </Switch>
 )
 

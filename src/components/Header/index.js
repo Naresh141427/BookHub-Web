@@ -7,8 +7,24 @@ import {IoIosCloseCircle} from 'react-icons/io'
 
 import './index.css'
 
+const tabs = [
+  {
+    id: 1,
+    tab: 'Home',
+    isActive: true,
+    path: '/',
+  },
+  {
+    id: 12,
+    tab: 'Bookshelves',
+    isActive: false,
+    path: '/shelf',
+  },
+]
+
 const Header = props => {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [tabsList, setTabsList] = useState(tabs)
 
   const onLogOut = () => {
     const {history} = props
@@ -17,6 +33,18 @@ const Header = props => {
   }
 
   const toggleMenu = () => setMenuOpen(prev => !prev)
+  const onSelectingTab = e => {
+    const filteredtabs = tabsList.map(each => {
+      if (each.tab === e.target.textContent) {
+        return {...each, isActive: true}
+      }
+      return {...each, isActive: false}
+    })
+
+    setTabsList(filteredtabs)
+  }
+
+  console.log(tabsList)
 
   return (
     <>
@@ -59,21 +87,30 @@ const Header = props => {
 
       {/* largescreen nav */}
       <nav className="lg-nav">
-        <div className="bookhub-logo-container">
+        <Link to="/" className="bookhub-logo-container">
           <img
             src="https://res.cloudinary.com/djugcf64d/image/upload/v1680943074/Group_7730_moxigd.png"
             className="bookhub-logo"
             alt="bookhub text logo"
           />
           <span className="logo-text">ook Hub</span>
-        </div>
+        </Link>
         <ul className="nav-items-container">
-          <Link className="link" to="/">
-            <li>Home</li>
-          </Link>
-          <Link className="link" to="/shelf">
-            <li>Bookshelves</li>
-          </Link>
+          {tabsList.map(each => (
+            <Link
+              className="link-item"
+              to={each.path}
+              key={each.id}
+              onClick={onSelectingTab}
+            >
+              <li
+                onClick={onSelectingTab}
+                className={each.isActive ? 'active-tab' : 'link'}
+              >
+                {each.tab}
+              </li>
+            </Link>
+          ))}
           <Link className="link" to="/">
             <li>
               <button

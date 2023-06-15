@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
 
 import './index.css'
@@ -56,6 +57,11 @@ const Login = props => {
     }
     onFailureFetch(data.error_msg)
   }
+
+  if (Cookies.get('jwt_token') !== undefined) {
+    return <Redirect to="/" />
+  }
+
   return (
     <div className="mobile-login-container">
       <div className="login-image-container">
