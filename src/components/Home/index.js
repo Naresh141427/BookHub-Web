@@ -1,21 +1,11 @@
 import {Component} from 'react'
-import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 
-import {
-  FaGoogle,
-  FaTwitter,
-  FaInstagram,
-  FaYoutube,
-  FaChevronLeft,
-  FaChevronRight,
-} from 'react-icons/fa'
+import {FaGoogle, FaTwitter, FaInstagram, FaYoutube} from 'react-icons/fa'
 
 import Header from '../Header'
+import BooksSlider from '../Slider'
 
 import './index.css'
 
@@ -36,9 +26,10 @@ class Home extends Component {
     this.getTopBooks()
   }
 
-  onSucessfullGetFetch = data => {
+  onSuccessFullGetFetch = data => {
     const updateBooksData = data.map(each => ({
       id: each.id,
+      title: each.title,
       coverPic: each.cover_pic,
       authorName: each.author_name,
     }))
@@ -62,9 +53,8 @@ class Home extends Component {
       options,
     )
     const data = await response.json()
-    console.log(data)
     if (response.ok) {
-      this.onSucessfullGetFetch(data.books)
+      this.onSuccessFullGetFetch(data.books)
     }
   }
 
@@ -78,57 +68,11 @@ class Home extends Component {
   )
 
   renderHome = () => {
-    const {booksData} = this.state
     const onFindingBooks = () => {
       const {history} = this.props
-      history.replace('/shelf')
+      history.push('/shelf')
     }
-
-    const settings = {
-      dots: false,
-      infinite: false,
-      arrows: true,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      responsive: [
-        {
-          breakpoint: 1600,
-          settings: {
-            slidesToShow: 4,
-            slidesToScroll: 1,
-          },
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-          },
-        },
-        {
-          breakpoint: 460,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-          },
-        },
-      ],
-    }
-
-    const renderSlider = () => (
-      <Slider {...settings}>
-        {booksData.map(each => {
-          const {id, coverPic, authorName} = each
-          return (
-            <Link to={`/books/${id}`} className="slick-item" key={id}>
-              <img className="logo-image" src={coverPic} alt={authorName} />
-            </Link>
-          )
-        })}
-      </Slider>
-    )
-
+    const {booksData} = this.state
     return (
       <>
         <Header />
@@ -152,7 +96,7 @@ class Home extends Component {
           </div>
           <div className="top-books-container">
             <h2 className="top-books-title">Top Rated Books</h2>
-            <div className="slick-container">{renderSlider()}</div>
+            <BooksSlider booksData={booksData} />
           </div>
           <div className="footer-section">
             <div className="social-apps-container">
@@ -188,7 +132,7 @@ class Home extends Component {
                 Find Books
               </button>
             </div>
-            <div className="slick-container">{renderSlider()}</div>
+            <BooksSlider booksData={booksData} />
           </div>
           <div className="footer-section">
             <div className="social-apps-container">
