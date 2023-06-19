@@ -50,7 +50,6 @@ const Shelf = () => {
   const [bookshelfName, setBookshelfName] = useState(bookshelvesList[0].value)
   const [searchText, setSearchText] = useState('')
   const [bookShelvesData, setBookShelvesData] = useState([])
-  const booksCopyData = [...bookShelvesData]
 
   useEffect(() => {
     const fetching = async () => {
@@ -87,7 +86,7 @@ const Shelf = () => {
 
   const onSelectingCategory = e => {
     let shelfName
-    const filteredCategories = bookshelvesList.map(each => {
+    const filteredCategories = bookShelvesData.map(each => {
       if (each.label === e.target.textContent) {
         shelfName = each.value
         return {...each, isClicked: true}
@@ -99,11 +98,7 @@ const Shelf = () => {
   }
 
   const onSearch = e => {
-    const filteredBooks = booksCopyData.filter(book =>
-      book.title.toLowerCase().includes(e.target.value.toLowerCase()),
-    )
     setSearchText(e.target.value)
-    setBookShelvesData(filteredBooks)
   }
 
   const renderLoadingView = () => (
@@ -112,7 +107,7 @@ const Shelf = () => {
     </div>
   )
 
-  const renderFailureView = () => <p>Failure view</p>
+  const renderFailureView = () => <p>faliure view</p>
 
   const renderBookItems = () => (
     <>
@@ -145,15 +140,9 @@ const Shelf = () => {
           ))}
         </div>
         <ul className="books-items-container">
-          {apiStatus === apiStatusConstants.inProgress ? (
-            <div className="loader-container" testid="loader">
-              <Loader type="TailSpin" color="#0284C7" height={50} width={50} />
-            </div>
-          ) : (
-            bookShelvesData.map(each => (
-              <BookItem booksDetails={each} key={each.id} />
-            ))
-          )}
+          {bookShelvesData.map(each => (
+            <BookItem booksDetails={each} key={each.id} />
+          ))}
         </ul>
         <Footer />
       </div>
@@ -192,20 +181,9 @@ const Shelf = () => {
             </div>
           </div>
           <ul className="lg-books-container">
-            {apiStatus === apiStatusConstants.inProgress ? (
-              <div className="loader-container" testid="loader">
-                <Loader
-                  type="TailSpin"
-                  color="#0284C7"
-                  height={50}
-                  width={50}
-                />
-              </div>
-            ) : (
-              bookShelvesData.map(each => (
-                <BookItem booksDetails={each} key={each.id} />
-              ))
-            )}
+            {bookShelvesData.map(each => (
+              <BookItem booksDetails={each} key={each.id} />
+            ))}
           </ul>
           <Footer />
         </div>
@@ -225,7 +203,6 @@ const Shelf = () => {
         return null
     }
   }
-
   return (
     <>
       <Header />
