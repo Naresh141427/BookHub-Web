@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 
@@ -51,12 +51,15 @@ const Shelf = () => {
   const [searchText, setSearchText] = useState('')
   const [bookShelvesData, setBookShelvesData] = useState([])
 
+  const searchInputRef = useRef(null) // Ref for the search input element
+
   useEffect(() => {
     const fetching = async () => {
       try {
         setApiStatus(apiStatusConstants.inProgress)
         const token = Cookies.get('jwt_token')
         const apiUrl = `https://apis.ccbp.in/book-hub/books?shelf=${bookshelfName}&search=${searchText}`
+        console.log(apiUrl)
         const options = {
           method: 'GET',
           headers: {
@@ -76,6 +79,7 @@ const Shelf = () => {
         }))
         setBookShelvesData(updateData)
         setApiStatus(apiStatusConstants.success)
+        searchInputRef.current.focus() // Focus on the search input element
       } catch (e) {
         console.log(e.message)
         setApiStatus(apiStatusConstants.failure)
@@ -85,16 +89,14 @@ const Shelf = () => {
   }, [searchText, bookshelfName])
 
   const onSelectingCategory = e => {
-    let shelfName
-    const filteredCategories = bookShelvesData.map(each => {
+    const filteredCategories = bookshelvesList.map(each => {
       if (each.label === e.target.textContent) {
-        shelfName = each.value
+        setBookshelfName(each.value)
         return {...each, isClicked: true}
       }
       return {...each, isClicked: false}
     })
     setCategories(filteredCategories)
-    setBookshelfName(shelfName)
   }
 
   const onSearch = e => {
@@ -108,6 +110,7 @@ const Shelf = () => {
   )
 
   const renderFailureView = () => <p>faliure view</p>
+  console.log(categories)
 
   const renderBookItems = () => (
     <>
@@ -119,6 +122,8 @@ const Shelf = () => {
             className="sm-search-bar"
             placeholder="Search"
             onChange={onSearch}
+            value={searchText}
+            ref={searchInputRef} // Assign the ref to the input element
           />
           <button className="search-button" type="button">
             <IoIosSearch className="sm-search-icon" />
@@ -174,6 +179,8 @@ const Shelf = () => {
                 className="lg-input-bar"
                 placeholder="Search"
                 onChange={onSearch}
+                value={searchText}
+                ref={searchInputRef} // Assign the ref to the input element
               />
               <button type="button" className="lg-search-icon-button">
                 <IoIosSearch className="lg-search-icon" />
@@ -203,6 +210,7 @@ const Shelf = () => {
         return null
     }
   }
+
   return (
     <>
       <Header />
