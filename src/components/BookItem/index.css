@@ -1,0 +1,143 @@
+.book-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  height: 200px;
+  width: 100%;
+  cursor: pointer;
+}
+.book-image {
+  height: 90%;
+  width: 50%;
+  max-width: 200px;
+  border-radius: 10px;
+}
+.book-details-container {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 15px;
+}
+.book-name {
+  font-family: 'Inter';
+  font-style: normal;
+  font-size: 18px;
+  font-weight: 600;
+  color: #334155;
+  width: 100%;
+}
+.author-name {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  color: #475569;
+  margin-top: 0px;
+
+  margin-bottom: 0px;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+
+  margin-top: 10px;
+}
+.rating {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+
+  color: #475569;
+  margin-top: 0px;
+  margin-right: 5px;
+}
+.rating-star {
+  height: 13px;
+  width: 13px;
+  margin-right: 5px;
+}
+.rating-count {
+  font-family: 'HK Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #334155;
+}
+.status-container {
+  display: flex;
+  align-items: center;
+  margin-top: 18px;
+}
+.status {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  color: #475569;
+
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+.status-text {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+
+  color: #0284c7;
+}
+
+@media screen and (min-width: 768px) {
+  .book-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    height: 280px;
+    width: 458px;
+    cursor: pointer;
+  }
+  .book-image {
+    height: 90%;
+    width: 50%;
+    border-radius: 8px;
+  }
+  .book-details-container {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 30px;
+    padding-top: 20px;
+  }
+  .book-name {
+    font-size: 28px;
+  }
+  .author-name {
+    font-size: 25px;
+  }
+  .rating {
+    font-size: 23px;
+  }
+  .rating-star {
+    height: 18px;
+    width: 18px;
+    margin-right: 10px;
+    margin-left: 5px;
+  }
+  .rating-count {
+    font-size: 23px;
+  }
+  .status {
+    font-size: 25px;
+  }
+  .status-text {
+    font-size: 20px;
+  }
+}

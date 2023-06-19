@@ -1,22 +1,6 @@
 .lg-nav {
   display: none;
 }
-
-.link-item {
-  text-decoration: none;
-}
-.active-tab {
-  color: #0284c7;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 22px;
-  margin-right: 35px;
-}
-
 .sm-nav {
   width: 100vw;
   background-color: #fff;
@@ -28,21 +12,56 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.link {
+.nav-list-container {
+  width: 100vw;
   display: flex;
   align-items: center;
-  text-decoration: none;
+  justify-content: space-between;
+  list-style-type: none;
+  margin: 0px;
+  padding-top: 15px;
+  padding-left: 10px;
+  background-color: #d3e8ec;
+  box-sizing: border-box;
 }
-li {
+
+.link-item {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
-  font-size: 22px;
-
+  font-size: 15px;
   color: #64748b;
-  margin-right: 35px;
+  text-decoration: none;
 }
-@media screen and (min-width: 325px) and (max-width: 768px) {
+.active-tab-link-item {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  color: #0284c7;
+  text-decoration: none;
+}
+.sm-logout-button {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  color: #f8fafc;
+  padding: 5px 16px;
+  background: #0284c7;
+  border-radius: 4px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+.close-icon {
+  height: 25px;
+  width: 25px;
+  color: #334155;
+  margin-left: 0px;
+}
+@media screen and (min-width: 354px) and (max-width: 768px) {
   .sm-nav {
     padding: 15px;
   }
@@ -72,7 +91,7 @@ li {
   cursor: pointer;
   outline: none;
 }
-@media screen and (min-width: 325px) and (max-width: 768px) {
+@media screen and (min-width: 354px) and (max-width: 768px) {
   .bookhub-logo {
     height: 33px;
     width: 33px;
@@ -85,6 +104,9 @@ li {
     height: 25px;
     width: 25px;
   }
+  .link-item {
+    font-size: 20px;
+  }
 }
 
 @media screen and (min-width: 769px) {
@@ -96,7 +118,7 @@ li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 30px 60px;
+    padding: 15px 60px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
   }
   .bookhub-logo {
@@ -108,35 +130,20 @@ li {
     padding-top: 15px;
   }
   .nav-items-container {
+    width: 360px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding-left: 0px;
     list-style-type: none;
   }
-  .active-tab {
-    color: #0284c7;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 22px;
-    margin-right: 35px;
-  }
-  .link {
-    display: flex;
-    align-items: center;
+  .link-item {
+    font-size: 23px;
     text-decoration: none;
   }
-  li {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 22px;
-
-    color: #64748b;
-    margin-right: 35px;
+  .active-tab-link-item {
+    font-size: 23px;
+    text-decoration: none;
   }
   .logout-button {
     font-family: 'Inter';
@@ -152,73 +159,23 @@ li {
     outline: none;
     cursor: pointer;
   }
-  .active-tab {
-    color: #0284c7;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-  }
-}
-.sm-nav-items-container {
-  display: flex;
-  align-items: center;
-  background-color: #d3e8ec;
-  padding: 0px 20px;
-  margin-bottom: 0px;
 }
 
-.nav-lis-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 0px;
-  list-style-type: none;
-  margin-bottom: 0px;
-}
-
-.sm-nav-item {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-
-  color: #64748b;
-}
-
-.sm-logout-button {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 13px;
-  color: #f8fafc;
-  padding: 5px 16px;
-  background: #0284c7;
-  border-radius: 4px;
-  border: none;
-  border-radius: 5px;
-  outline: none;
-  cursor: pointer;
-}
-.close-icon {
-  height: 25px;
-  width: 25px;
-  color: #334155;
-}
-.sm-link {
-  text-decoration: none;
-}
-
-@media screen and (min-width: 325px) and (max-width: 768px) {
+@media screen and (min-width: 354x) and (max-width: 768px) {
   .sm-nav-item {
     font-size: 18px;
   }
   .sm-logout-button {
-    padding: 8px 24px;
-    font-size: 18px;
+    padding: 8px 16px;
+    font-size: 15px;
   }
   .close-icon {
-    height: 38px;
-    width: 38px;
+    height: 28px;
+    width: 28px;
+  }
+}
+@media screen and (min-width: 769px) {
+  .nav-list-container {
+    display: none;
   }
 }

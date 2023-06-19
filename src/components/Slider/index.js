@@ -7,7 +7,6 @@ import './index.css'
 
 const BooksSlider = props => {
   const {booksData} = props
-  console.log(booksData)
   const settings = {
     dots: false,
     infinite: false,

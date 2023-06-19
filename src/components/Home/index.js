@@ -2,10 +2,9 @@ import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 
-import {FaGoogle, FaTwitter, FaInstagram, FaYoutube} from 'react-icons/fa'
-
 import Header from '../Header'
 import BooksSlider from '../Slider'
+import Footer from '../Footer'
 
 import './index.css'
 
@@ -98,15 +97,7 @@ class Home extends Component {
             <h2 className="top-books-title">Top Rated Books</h2>
             <BooksSlider booksData={booksData} />
           </div>
-          <div className="footer-section">
-            <div className="social-apps-container">
-              <FaGoogle className="social-app" />
-              <FaTwitter className="social-app" />
-              <FaInstagram className="social-app" />
-              <FaYoutube className="social-app" />
-            </div>
-            <h2 className="contact-title">Contact Us</h2>
-          </div>
+          <Footer />
         </div>
 
         {/* large screen */}
@@ -134,15 +125,7 @@ class Home extends Component {
             </div>
             <BooksSlider booksData={booksData} />
           </div>
-          <div className="footer-section">
-            <div className="social-apps-container">
-              <FaGoogle className="social-app" />
-              <FaTwitter className="social-app" />
-              <FaInstagram className="social-app" />
-              <FaYoutube className="social-app" />
-            </div>
-            <h2 className="contact-title">Contact Us</h2>
-          </div>
+          <Footer />
         </div>
       </>
     )

@@ -1,0 +1,64 @@
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+.social-apps-container {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.social-app {
+  height: 20px;
+  width: 20px;
+  color: #3d3c3c;
+  cursor: pointer;
+}
+.contact-title {
+  font-family: 'HK Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: #3d3c3c;
+  margin-top: 18px;
+}
+@media screen and (min-width: 354px) and (max-width: 768px) {
+  .social-apps-container {
+    width: 60%;
+    max-width: 250px;
+    margin-bottom: 10px;
+  }
+  .social-app {
+    height: 30px;
+    width: 30px;
+  }
+  .contact-title {
+    font-size: 25px;
+  }
+}
+@media screen and (min-width: 769px) {
+  .footer-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+    margin-bottom: 30px;
+  }
+  .social-apps-container {
+    width: 23%;
+    margin-bottom: 20px;
+  }
+  .social-app {
+    height: 40px;
+    width: 40px;
+  }
+  .contact-title {
+    font-size: 35px;
+    margin-top: 30px;
+  }
+}

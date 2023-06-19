@@ -10,15 +10,15 @@ import './index.css'
 const tabs = [
   {
     id: 1,
-    tab: 'Home',
-    isActive: true,
+    name: 'Home',
     path: '/',
+    isActive: false,
   },
   {
     id: 12,
-    tab: 'Bookshelves',
-    isActive: false,
+    name: 'Bookshelves',
     path: '/shelf',
+    isActive: true,
   },
 ]
 
@@ -33,17 +33,16 @@ const Header = props => {
   }
 
   const toggleMenu = () => setMenuOpen(prev => !prev)
-  const onSelectingTab = e => {
-    const filteredtabs = tabsList.map(each => {
-      if (each.tab === e.target.textContent) {
-        return {...each, isActive: true}
-      }
-      return {...each, isActive: false}
-    })
+  const onSelectingTab = name => {
+    const updatedTabs = tabs.map(tab => ({
+      ...tab,
+      isActive: tab.name === name,
+    }))
 
-    setTabsList(filteredtabs)
+    setTabsList(updatedTabs)
   }
 
+  console.log(tabsList)
   return (
     <>
       {/* mobile nav */}
@@ -59,31 +58,30 @@ const Header = props => {
         <AiOutlineMenu className="menu-icon" onClick={toggleMenu} />
       </nav>
       {menuOpen && (
-        <div className="sm-nav-items-container">
-          <ul className="nav-lis-container">
-            <Link to="/" className="sm-link">
-              <li className="sm-nav-item">Home</li>
-            </Link>
-            <Link to="/shelf" className="sm-link">
-              <li className="sm-nav-item">BookShelves</li>
-            </Link>
-            <li className="sm-nav-item">
-              <button
-                type="button"
-                className="sm-logout-button"
-                onClick={onLogOut}
-              >
-                Logout
-              </button>
+        <ul className="nav-list-container">
+          {tabsList.map(eachTab => (
+            <li key={eachTab.id} onClick={() => onSelectingTab(eachTab.name)}>
+              <Link to={eachTab.path} className="link-item">
+                {eachTab.name}
+              </Link>
             </li>
-            <li>
-              <IoIosCloseCircle className="close-icon" onClick={toggleMenu} />
-            </li>
-          </ul>
-        </div>
+          ))}
+          <li className="sm-nav-item">
+            <button
+              type="button"
+              className="sm-logout-button"
+              onClick={onLogOut}
+            >
+              Logout
+            </button>
+          </li>
+          <li>
+            <IoIosCloseCircle className="close-icon" onClick={toggleMenu} />
+          </li>
+        </ul>
       )}
 
-      {/* largescreen nav */}
+      {/* large screen nav */}
       <nav className="lg-nav">
         <Link to="/" className="bookhub-logo-container">
           <img
@@ -94,32 +92,23 @@ const Header = props => {
           <span className="logo-text">ook Hub</span>
         </Link>
         <ul className="nav-items-container">
-          {tabsList.map(each => (
-            <Link
-              className="link-item"
-              to={each.path}
-              key={each.id}
-              onClick={onSelectingTab}
+          {tabsList.map(eachTab => (
+            <li
+              onClick={() => onSelectingTab(eachTab.name)}
+              key={eachTab.id}
+              className="link"
             >
-              <li
-                onClick={onSelectingTab}
-                className={each.isActive ? 'active-tab' : 'link'}
-              >
-                {each.tab}
-              </li>
-            </Link>
-          ))}
-          <Link className="link" to="/">
-            <li>
-              <button
-                type="button"
-                className="logout-button"
-                onClick={onLogOut}
-              >
-                Logout
-              </button>
+              <Link className="link-item" to={eachTab.path}>
+                {eachTab.name}
+              </Link>
             </li>
-          </Link>
+          ))}
+
+          <li>
+            <button type="button" className="logout-button" onClick={onLogOut}>
+              Logout
+            </button>
+          </li>
         </ul>
       </nav>
     </>
