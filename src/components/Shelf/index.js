@@ -88,7 +88,13 @@ const Shelf = () => {
       }
     }
     fetching()
-  }, [searchText, bookshelfName, retryCount, bookShelvesData, loaderCount])
+  }, [
+    searchText,
+    bookshelfName,
+    retryCount,
+    loaderCount,
+    bookShelvesData.length,
+  ])
 
   const onSelectingCategory = e => {
     const filteredCategories = bookshelvesList.map(each => {

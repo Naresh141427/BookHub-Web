@@ -42,7 +42,6 @@ const Header = props => {
     setTabsList(updatedTabs)
   }
 
-  console.log(tabsList)
   return (
     <>
       {/* mobile nav */}
