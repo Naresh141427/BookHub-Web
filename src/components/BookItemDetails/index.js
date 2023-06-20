@@ -17,6 +17,7 @@ const apiStatusConstants = {
 const BookItemDetails = props => {
   const [bookData, setBookData] = useState([])
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
+  const [retryCount, setRetryCount] = useState(0)
 
   const updateTheData = data => ({
     id: data.id,
@@ -55,7 +56,7 @@ const BookItemDetails = props => {
       }
     }
     doFetch()
-  }, [props])
+  }, [props, retryCount])
 
   console.log(bookData)
 
@@ -71,7 +72,7 @@ const BookItemDetails = props => {
     } = bookData
 
     return (
-      <>
+      <div className="sm-main-page-section">
         <div className="book-details-section">
           <div className="top-section">
             <img src={coverPic} alt={title} className="book-item-image" />
@@ -102,7 +103,7 @@ const BookItemDetails = props => {
           </div>
         </div>
         <Footer />
-      </>
+      </div>
     )
   }
 
@@ -112,7 +113,31 @@ const BookItemDetails = props => {
     </div>
   )
 
-  const renderFailureView = () => <p> failed</p>
+  const renderFailureView = () => {
+    const handleRetry = () => {
+      setRetryCount(prevCount => prevCount + 1)
+      setApiStatus(apiStatusConstants.inProgress)
+    }
+    return (
+      <div className="book-wrong-container">
+        <img
+          src="https://res.cloudinary.com/djugcf64d/image/upload/v1682071963/Group_7522_jdxurd.png"
+          alt="something wrong"
+          className="wrong-image"
+        />
+        <p className="book-wrong-message">
+          Something went wrong, Please try again.
+        </p>
+        <button
+          type="button"
+          className="book-try-again-button"
+          onClick={handleRetry}
+        >
+          Try Again
+        </button>
+      </div>
+    )
+  }
 
   const renderBookItemDetails = () => {
     switch (apiStatus) {
@@ -129,7 +154,7 @@ const BookItemDetails = props => {
   return (
     <>
       <Header />
-      <div className="sm-main-page-section">{renderBookItemDetails()}</div>
+      {renderBookItemDetails()}
     </>
   )
 }
