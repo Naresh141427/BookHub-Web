@@ -38,22 +38,25 @@ class Home extends Component {
   }
 
   getTopBooks = async () => {
-    this.setState({apiStatus: apiStatusConstants.inProgress})
-    const token = Cookies.get('jwt_token')
-    const options = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    try {
+      this.setState({apiStatus: apiStatusConstants.inProgress})
+      const token = Cookies.get('jwt_token')
+      const options = {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
 
-    const response = await fetch(
-      'https://apis.ccbp.in/book-hub/top-rated-books',
-      options,
-    )
-    const data = await response.json()
-    if (response.ok) {
+      const response = await fetch(
+        'https://apis.ccbp.in/book-hub/top-rated-books',
+        options,
+      )
+      const data = await response.json()
       this.onSuccessFullGetFetch(data.books)
+    } catch (error) {
+      console.log(error)
+      this.setState({apiStatus: apiStatusConstants.failure})
     }
   }
 
@@ -131,11 +134,62 @@ class Home extends Component {
     )
   }
 
-  renderFailureView = () => (
-    <>
-      <Header />
-    </>
-  )
+  failureComponent = () => {
+    const handleRetry = () => {
+      this.getTopBooks()
+    }
+    return (
+      <div className="home-wrong-container">
+        <img
+          src="https://res.cloudinary.com/djugcf64d/image/upload/v1682071963/Group_7522_jdxurd.png"
+          alt="something wrong"
+          className="home-wrong-image"
+        />
+        <p className="wrong-message">Something went wrong, Please try again.</p>
+        <button
+          type="button"
+          className="home-try-again-button"
+          onClick={handleRetry}
+        >
+          Try Again
+        </button>
+      </div>
+    )
+  }
+
+  renderFailureView = () => {
+    const onFindingBooks = () => {
+      const {history} = this.props
+      history.push('/shelf')
+    }
+    return (
+      <>
+        <div className="main-section">
+          <div className="top-section-container">
+            <h1 className="top-section-header">
+              Find Your Next Favorite Books?
+            </h1>
+            <p className="top-section-description">
+              You are in the right place. Tell us what titles or genres you have
+              enjoyed in the past, and we will give you surprisingly insightful
+              recommendations.
+            </p>
+            <button
+              type="button"
+              className="find-books-button"
+              onClick={onFindingBooks}
+            >
+              Find Books
+            </button>
+          </div>
+          <div className="top-books-container">
+            <h2 className="top-books-title">Top Rated Books</h2>
+            {this.failureComponent()}
+          </div>
+        </div>
+      </>
+    )
+  }
 
   render() {
     const {apiStatus} = this.state

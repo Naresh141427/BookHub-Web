@@ -17,6 +17,8 @@ specifiers:
   husky: 4.3.8
   jest-styled-components: 7.0.5
   js-cookie: 3.0.1
+  lodash: 4.17.21
+  lodash.debounce: 4.0.8
   msw: 0.35.0
   npm-run-all: 4.1.5
   prettier: 2.2.1
@@ -43,6 +45,8 @@ dependencies:
   history: 5.0.1
   jest-styled-components: 7.0.5
   js-cookie: 3.0.1
+  lodash: 4.17.21
+  lodash.debounce: 4.0.8
   msw: 0.35.0
   react: 17.0.1
   react-dom: 17.0.1_react@17.0.1
@@ -8077,7 +8081,7 @@ packages:
     dev: true
 
   /lodash.debounce/4.0.8:
-    resolution: {integrity: sha1-gteb/zCmfEAF/9XiUVMArZyk168=}
+    resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
 
   /lodash.escape/4.0.1:
     resolution: {integrity: sha1-yQRGkMIeBClL6qUXcS/e0fqI3pg=}

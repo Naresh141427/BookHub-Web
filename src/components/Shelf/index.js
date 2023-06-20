@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react'
+import {useState, useEffect} from 'react'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 
@@ -8,6 +8,7 @@ import {IoIosSearch} from 'react-icons/io'
 
 import Header from '../Header'
 import BookItem from '../BookItem'
+import NoBooks from '../NoBooks'
 import Footer from '../Footer'
 
 const bookshelvesList = [
@@ -50,16 +51,18 @@ const Shelf = () => {
   const [bookshelfName, setBookshelfName] = useState(bookshelvesList[0].value)
   const [searchText, setSearchText] = useState('')
   const [bookShelvesData, setBookShelvesData] = useState([])
-
-  const searchInputRef = useRef(null) // Ref for the search input element
+  const [loaderCount, setLoaderCount] = useState(0)
+  const [retryCount, setRetryCount] = useState(0)
 
   useEffect(() => {
     const fetching = async () => {
       try {
-        setApiStatus(apiStatusConstants.inProgress)
+        if (bookShelvesData.length === 0 && loaderCount === 0) {
+          setApiStatus(apiStatusConstants.inProgress)
+          setLoaderCount(prevCount => prevCount + 1)
+        }
         const token = Cookies.get('jwt_token')
         const apiUrl = `https://apis.ccbp.in/book-hub/books?shelf=${bookshelfName}&search=${searchText}`
-        console.log(apiUrl)
         const options = {
           method: 'GET',
           headers: {
@@ -79,14 +82,13 @@ const Shelf = () => {
         }))
         setBookShelvesData(updateData)
         setApiStatus(apiStatusConstants.success)
-        searchInputRef.current.focus() // Focus on the search input element
       } catch (e) {
         console.log(e.message)
         setApiStatus(apiStatusConstants.failure)
       }
     }
     fetching()
-  }, [searchText, bookshelfName])
+  }, [searchText, bookshelfName, retryCount, bookShelvesData, loaderCount])
 
   const onSelectingCategory = e => {
     const filteredCategories = bookshelvesList.map(each => {
@@ -109,12 +111,12 @@ const Shelf = () => {
     </div>
   )
 
-  const renderFailureView = () => <p>faliure view</p>
-  console.log(categories)
-
-  const renderBookItems = () => (
-    <>
-      {/* small devices */}
+  const renderFailureViewForSmallDevices = () => {
+    const handleRetry = () => {
+      setRetryCount(prevCount => prevCount + 1)
+      setApiStatus(apiStatusConstants.inProgress)
+    }
+    return (
       <div className="sm-main-section">
         <div className="search-bar-container">
           <input
@@ -123,7 +125,6 @@ const Shelf = () => {
             placeholder="Search"
             onChange={onSearch}
             value={searchText}
-            ref={searchInputRef} // Assign the ref to the input element
           />
           <button className="search-button" type="button">
             <IoIosSearch className="sm-search-icon" />
@@ -144,15 +145,33 @@ const Shelf = () => {
             </li>
           ))}
         </div>
-        <ul className="books-items-container">
-          {bookShelvesData.map(each => (
-            <BookItem booksDetails={each} key={each.id} />
-          ))}
-        </ul>
-        <Footer />
+        <div className="wrong-container">
+          <img
+            src="https://res.cloudinary.com/djugcf64d/image/upload/v1682071963/Group_7522_jdxurd.png"
+            alt="something wrong"
+            className="wrong-image"
+          />
+          <p className="wrong-message">
+            Something went wrong, Please try again.
+          </p>
+          <button
+            type="button"
+            className="try-again-button"
+            onClick={handleRetry}
+          >
+            Try Again
+          </button>
+        </div>
       </div>
+    )
+  }
 
-      {/* large devices */}
+  const renderFailureViewForLargeDevices = () => {
+    const handleRetry = () => {
+      setRetryCount(prevCount => prevCount + 1)
+      setApiStatus(apiStatusConstants.inProgress)
+    }
+    return (
       <div className="lg-shelf-main-section">
         <div className="bookshelves-container">
           <h1 className="bookshelf-title">Bookshelves</h1>
@@ -180,24 +199,138 @@ const Shelf = () => {
                 placeholder="Search"
                 onChange={onSearch}
                 value={searchText}
-                ref={searchInputRef} // Assign the ref to the input element
               />
               <button type="button" className="lg-search-icon-button">
                 <IoIosSearch className="lg-search-icon" />
               </button>
             </div>
           </div>
+          <div className="wrong-container">
+            <img
+              src="https://res.cloudinary.com/djugcf64d/image/upload/v1682071963/Group_7522_jdxurd.png"
+              alt="something wrong"
+              className="wrong-image"
+            />
+            <p className="wrong-message">
+              Something went wrong, Please try again.
+            </p>
+            <button
+              type="button"
+              className="try-again-button"
+              onClick={handleRetry}
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  const renderBookItemsForSmallDevices = () => (
+    <div className="sm-main-section">
+      <div className="search-bar-container">
+        <input
+          type="search"
+          className="sm-search-bar"
+          placeholder="Search"
+          onChange={onSearch}
+          value={searchText}
+        />
+        <button className="search-button" type="button">
+          <IoIosSearch className="sm-search-icon" />
+        </button>
+      </div>
+      <h1 className="shelf-title">BookShelves</h1>
+      <div className="bookshelves-tabs-container">
+        {categories.map(tab => (
+          <li
+            className={
+              tab.isClicked ? 'active-bookshelf-button' : 'bookshelf-button'
+            }
+            type="button"
+            key={tab.id}
+            onClick={onSelectingCategory}
+          >
+            {tab.label}
+          </li>
+        ))}
+      </div>
+      {bookShelvesData.length ? (
+        <>
           <ul className="lg-books-container">
             {bookShelvesData.map(each => (
               <BookItem booksDetails={each} key={each.id} />
             ))}
           </ul>
           <Footer />
-        </div>
+        </>
+      ) : (
+        <NoBooks searchText={searchText} />
+      )}
+    </div>
+  )
+  const renderBookItemsForLargeDevices = () => (
+    <div className="lg-shelf-main-section">
+      <div className="bookshelves-container">
+        <h1 className="bookshelf-title">Bookshelves</h1>
+        <ul className="lg-tabs-container">
+          {categories.map(each => (
+            <li
+              className={each.isClicked ? 'active-lg-tab-item' : 'lg-tab-item'}
+              key={each.id}
+              onClick={onSelectingCategory}
+            >
+              {each.label}
+            </li>
+          ))}
+        </ul>
       </div>
+      <div className="lg-books-result-container">
+        <div className="read-books-container">
+          <h1 className="read-books-title">Read Books</h1>
+          <div className="lg-search-bar-container">
+            <input
+              type="search"
+              className="lg-input-bar"
+              placeholder="Search"
+              onChange={onSearch}
+              value={searchText}
+            />
+            <button type="button" className="lg-search-icon-button">
+              <IoIosSearch className="lg-search-icon" />
+            </button>
+          </div>
+        </div>
+        {bookShelvesData.length ? (
+          <>
+            <ul className="lg-books-container">
+              {bookShelvesData.map(each => (
+                <BookItem booksDetails={each} key={each.id} />
+              ))}
+            </ul>
+            <Footer />
+          </>
+        ) : (
+          <NoBooks searchText={searchText} />
+        )}
+      </div>
+    </div>
+  )
+
+  const renderBookItems = () => (
+    <>
+      {renderBookItemsForSmallDevices()}
+      {renderBookItemsForLargeDevices()}
     </>
   )
 
+  const renderFailureView = () => (
+    <>
+      {renderFailureViewForSmallDevices()}
+      {renderFailureViewForLargeDevices()}
+    </>
+  )
   const renderBookItemsData = () => {
     switch (apiStatus) {
       case apiStatusConstants.success:

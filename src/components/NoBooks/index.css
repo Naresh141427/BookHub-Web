@@ -1,0 +1,50 @@
+.no-book-container {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+}
+.no-book {
+  height: 100px;
+  width: 180px;
+}
+.no-book-description {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+
+  color: #334155;
+  margin-top: 20px;
+}
+p span {
+  font-weight: 600;
+  font-style: italic;
+}
+@media screen and (min-width: 354px) and (max-width: 767px) {
+  .no-book {
+    height: 150px;
+    width: 280px;
+  }
+  .no-book-description {
+    font-size: 18px;
+    margin-top: 30px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .no-book-container {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .no-book {
+    height: 250px;
+    width: 380px;
+  }
+  .no-book-description {
+    font-size: 24px;
+    margin-top: 40px;
+  }
+}
