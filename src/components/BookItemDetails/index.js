@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
+import {BsFillStarFill} from 'react-icons/bs'
 
 import Header from '../Header'
 import Footer from '../Footer'
@@ -80,17 +81,15 @@ const BookItemDetails = props => {
               <h1 className="book-item-title">{title}</h1>
               <p className="book-item-author">{authorName}</p>
               <div className="book-item-rating-container">
-                <span className="book-rating-title">Avg Rating</span>
-                <img
-                  src="https://res.cloudinary.com/djugcf64d/image/upload/v1686981839/Icon_wlmb7n.png"
-                  alt="rating star"
-                  className="rating-star-image"
-                />
-                <span className="book-item-rating">{rating}</span>
+                <p className="book-rating-title">Avg Rating</p>
+                <BsFillStarFill className="rating-star-image" />
+                <p className="book-item-rating">{rating}</p>
               </div>
               <div className="book-item-status-container">
-                <span className="book-item-status">Status:</span>
-                <span className="book-item-status-text">{readStatus}</span>
+                <p className="book-item-status">
+                  Status:
+                  <span className="book-item-status-text">{readStatus}</span>
+                </p>
               </div>
             </div>
           </div>
@@ -121,9 +120,9 @@ const BookItemDetails = props => {
     return (
       <div className="book-wrong-container">
         <img
-          src="https://res.cloudinary.com/djugcf64d/image/upload/v1682071963/Group_7522_jdxurd.png"
-          alt="something wrong"
-          className="wrong-image"
+          src="https://res.cloudinary.com/djugcf64d/image/upload/v1687244321/Group_7484page_not_found_v4cini.png"
+          className="failure view"
+          alt="failure view"
         />
         <p className="book-wrong-message">
           Something went wrong, Please try again.

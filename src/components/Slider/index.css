@@ -1,68 +1,116 @@
-.book-item {
-  text-decoration: none;
+.slider-container {
+  width: 100%;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.slick-prev:before,
-.slick-next:before {
-  color: #000;
-  font-size: 20px;
+.slider-book-item {
+  text-decoration: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.logo-image {
+  width: 90%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  object-fit: fill;
 }
 
 .book-title {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-size: 12px;
-  text-align: center;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-decoration: none;
   color: #334155;
 }
+
 .book-author {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
-  text-align: center;
+  font-size: 10px;
   color: #475569;
+  margin-top: 0px;
 }
-.logo-image {
-  height: 100px;
-  width: 90%;
-  margin: 0px 10px;
+
+/* Slider arrows */
+
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 30%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 20px;
+  background-color: #989898;
+  border-radius: 50%;
+  border: 1px solid #dddddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
 }
-@media screen and (min-width: 354px) and (max-width: 768px) {
-  .slick-prev:before,
-  .slick-next:before {
-    color: #000;
-    font-size: 24px;
+
+.slick-prev {
+  left: -33px;
+}
+
+.slick-next {
+  right: -33px;
+}
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+  background-color: #989898;
+}
+
+@media screen and (min-width: 354px) and (max-width: 767px) {
+  .logo-image {
+    width: 90%;
+    height: 120px;
   }
   .book-title {
-    font-size: 15px;
+    font-size: 13px;
   }
   .book-author {
-    font-size: 15px;
+    font-size: 11px;
   }
-  .logo-image {
-    height: 150px;
-    width: 90%;
-    margin: 0px 10px;
+  .slick-prev,
+  .slick-next {
+    top: 30%;
+    width: 20px;
+    height: 20px;
   }
 }
 
-@media screen and (min-width: 769px) {
-  .slick-prev:before,
-  .slick-next:before {
-    color: #000;
-    font-size: 30px;
-  }
+@media screen and (min-width: 768px) {
   .logo-image {
-    height: 250px;
     width: 90%;
-    margin: 0px 10px;
+    height: 250px;
   }
   .book-title {
     font-size: 25px;
   }
   .book-author {
-    font-size: 23px;
+    font-size: 20px;
+  }
+  .slick-prev,
+  .slick-next {
+    top: 40%;
+    width: 40px;
+    height: 40px;
   }
 }

@@ -1,4 +1,5 @@
 import {withRouter} from 'react-router-dom'
+import {BsFillStarFill} from 'react-icons/bs'
 
 import './index.css'
 
@@ -18,17 +19,16 @@ const BookItem = props => {
         <h1 className="book-name">{title}</h1>
         <p className="author-name">{authorName}</p>
         <div className="rating-container">
-          <span className="rating">Avg Rating</span>
-          <img
-            src="https://res.cloudinary.com/djugcf64d/image/upload/v1686981839/Icon_wlmb7n.png"
-            className="rating-star"
-            alt="rating"
-          />
-          <span className="rating-count">{AvgRating}</span>
+          <p className="rating">Avg Rating</p>
+          <p>
+            <BsFillStarFill className="rating-star" />
+          </p>
+          <p className="rating-count">{AvgRating}</p>
         </div>
         <div className="status-container">
-          <span className="status">Status:</span>
-          <span className="status-text">{status}</span>
+          <p className="status">
+            Status: <span className="status-text">{status}</span>
+          </p>
         </div>
       </div>
     </li>

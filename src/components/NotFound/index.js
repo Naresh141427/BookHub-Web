@@ -1,4 +1,4 @@
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import './index.css'
 
 const NotFound = props => {
@@ -14,13 +14,20 @@ const NotFound = props => {
         className="not-found-image"
         alt="not found"
       />
+      <h1 className="not-found-title">Page Not Found</h1>
       <p className="not-found-description">
         we are sorry, the page you requested could not be found. Please go back
         to the homepage.
       </p>
-      <button type="button" className="back-home-button" onClick={onGoBackHome}>
-        Go Back to Home
-      </button>
+      <Link to="/">
+        <button
+          type="button"
+          className="back-home-button"
+          onClick={onGoBackHome}
+        >
+          Go Back to Home
+        </button>
+      </Link>
     </div>
   )
 }

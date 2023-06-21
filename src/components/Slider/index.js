@@ -25,6 +25,13 @@ const BooksSlider = props => {
       {
         breakpoint: 770,
         settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 354,
+        settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
         },
@@ -36,11 +43,13 @@ const BooksSlider = props => {
       {booksData.map(each => {
         const {id, coverPic, authorName, title} = each
         return (
-          <Link to={`/books/${id}`} key={id} className="book-item">
-            <img className="logo-image" src={coverPic} alt={authorName} />
-            <h2 className="book-title">{title}</h2>
-            <p className="book-author">{authorName}</p>
-          </Link>
+          <li className="slider-item" key={id}>
+            <Link to={`/books/${id}`} className="slider-book-item">
+              <img className="logo-image" src={coverPic} alt={authorName} />
+              <h1 className="book-title">{title}</h1>
+              <p className="book-author">{authorName}</p>
+            </Link>
+          </li>
         )
       })}
     </Slider>

@@ -53,6 +53,7 @@ const Shelf = () => {
   const [bookShelvesData, setBookShelvesData] = useState([])
   const [loaderCount, setLoaderCount] = useState(0)
   const [retryCount, setRetryCount] = useState(0)
+  const [bookCategory, setBookCategory] = useState(bookshelvesList[0].label)
 
   useEffect(() => {
     const fetching = async () => {
@@ -100,6 +101,7 @@ const Shelf = () => {
     const filteredCategories = bookshelvesList.map(each => {
       if (each.label === e.target.textContent) {
         setBookshelfName(each.value)
+        setBookCategory(each.label)
         return {...each, isClicked: true}
       }
       return {...each, isClicked: false}
@@ -172,6 +174,8 @@ const Shelf = () => {
     )
   }
 
+  console.log(bookCategory)
+
   const renderFailureViewForLargeDevices = () => {
     const handleRetry = () => {
       setRetryCount(prevCount => prevCount + 1)
@@ -197,7 +201,7 @@ const Shelf = () => {
         </div>
         <div className="lg-books-result-container">
           <div className="read-books-container">
-            <h1 className="read-books-title">Read Books</h1>
+            <h1 className="read-books-title">{bookCategory} Books</h1>
             <div className="lg-search-bar-container">
               <input
                 type="search"
@@ -294,7 +298,7 @@ const Shelf = () => {
       </div>
       <div className="lg-books-result-container">
         <div className="read-books-container">
-          <h1 className="read-books-title">Read Books</h1>
+          <h1 className="read-books-title">{bookCategory} Books</h1>
           <div className="lg-search-bar-container">
             <input
               type="search"

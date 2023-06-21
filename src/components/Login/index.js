@@ -68,7 +68,7 @@ const Login = props => {
         <img
           src="https://res.cloudinary.com/djugcf64d/image/upload/v1680919798/Rectangle_1467_q0eddi.png"
           className="login-image"
-          alt="login book logo"
+          alt="website login"
         />
       </div>
       <div className="form-container">
@@ -77,7 +77,7 @@ const Login = props => {
             <img
               src="https://res.cloudinary.com/djugcf64d/image/upload/v1680943074/Group_7730_moxigd.png"
               className="bookhub-text"
-              alt="bookhub text logo"
+              alt="login website logo"
             />
             <span className="special-text">ook Hub</span>
           </div>

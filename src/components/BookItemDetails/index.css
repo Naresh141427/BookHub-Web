@@ -44,10 +44,10 @@
   font-size: 14px;
   color: #475569;
   margin-top: 0px;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
 }
 .book-item-rating-container {
-  width: 100%;
+  width: 90%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -57,12 +57,15 @@
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 
   color: #475569;
 }
 .rating-star-image {
   height: 15px;
   width: 15px;
+  color: #fbbf24;
 }
 .book-item-rating {
   font-family: 'HK Grotesk';
@@ -77,6 +80,8 @@
   align-items: center;
   justify-content: center;
   margin-top: 15px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .book-item-status {
   font-family: 'Inter';
@@ -84,6 +89,8 @@
   font-weight: 500;
   font-size: 14px;
   color: #475569;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .book-item-status-text {
   font-family: 'Inter';
@@ -204,6 +211,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 70px;
   }
   .book-details-section {
     background: #ffffff;
@@ -212,7 +220,6 @@
       0px 1px 2px rgba(96, 97, 112, 0.16);
     border-radius: 16px;
     padding: 30px;
-    width: 1200px;
   }
   .top-section {
     display: flex;

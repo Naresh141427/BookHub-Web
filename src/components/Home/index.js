@@ -97,7 +97,7 @@ class Home extends Component {
             </button>
           </div>
           <div className="top-books-container">
-            <h2 className="top-books-title">Top Rated Books</h2>
+            <h1 className="top-books-title">Top Rated Books</h1>
             <BooksSlider booksData={booksData} />
           </div>
           <Footer />
@@ -117,7 +117,7 @@ class Home extends Component {
           </div>
           <div className="top-books-container">
             <div className="button-container">
-              <h2 className="top-books-title">Top Rated Books</h2>
+              <h1 className="top-books-title">Top Rated Books</h1>
               <button
                 type="button"
                 className="find-books-button"
@@ -142,7 +142,7 @@ class Home extends Component {
       <div className="home-wrong-container">
         <img
           src="https://res.cloudinary.com/djugcf64d/image/upload/v1682071963/Group_7522_jdxurd.png"
-          alt="something wrong"
+          alt="failure view"
           className="home-wrong-image"
         />
         <p className="wrong-message">Something went wrong, Please try again.</p>

@@ -10,7 +10,7 @@ const Footer = () => (
       <FaInstagram className="social-app" />
       <FaYoutube className="social-app" />
     </div>
-    <h2 className="contact-title">Contact Us</h2>
+    <p className="contact-title">Contact us</p>
   </div>
 )
 export default Footer

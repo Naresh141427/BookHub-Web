@@ -9,6 +9,14 @@
   height: 100px;
   width: 180px;
 }
+.not-found-title {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  color: #334155;
+}
 .not-found-description {
   width: 70%;
   font-family: 'Inter';
@@ -39,6 +47,9 @@
     height: 150px;
     width: 250px;
   }
+  .not-found-title {
+    font-size: 14px;
+  }
   .not-found-description {
     width: 40%;
     font-size: 10px;
@@ -52,6 +63,9 @@
   .not-found-image {
     height: 200px;
     width: 350px;
+  }
+  .not-found-title {
+    font-size: 30px;
   }
   .not-found-description {
     width: 30%;

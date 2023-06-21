@@ -7,25 +7,8 @@ import {IoIosCloseCircle} from 'react-icons/io'
 
 import './index.css'
 
-const tabs = [
-  {
-    id: 1,
-    name: 'Home',
-    path: '/',
-    isActive: false,
-  },
-  {
-    id: 12,
-    name: 'Bookshelves',
-    path: '/shelf',
-    isActive: true,
-  },
-]
-
 const Header = props => {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [tabsList, setTabsList] = useState(tabs)
-
   const onLogOut = () => {
     const {history} = props
     Cookies.remove('jwt_token')
@@ -33,14 +16,6 @@ const Header = props => {
   }
 
   const toggleMenu = () => setMenuOpen(prev => !prev)
-  const onSelectingTab = name => {
-    const updatedTabs = tabs.map(tab => ({
-      ...tab,
-      isActive: tab.name === name,
-    }))
-
-    setTabsList(updatedTabs)
-  }
 
   return (
     <>
@@ -50,21 +25,24 @@ const Header = props => {
           <img
             src="https://res.cloudinary.com/djugcf64d/image/upload/v1680943074/Group_7730_moxigd.png"
             className="bookhub-logo"
-            alt="bookhub text logo"
+            alt="website logo"
           />
-          <span className="logo-text">ook Hub</span>
+          <span className="logo-text">Book Hub</span>
         </Link>
         <AiOutlineMenu className="menu-icon" onClick={toggleMenu} />
       </nav>
       {menuOpen && (
         <ul className="nav-list-container">
-          {tabsList.map(eachTab => (
-            <li key={eachTab.id} onClick={() => onSelectingTab(eachTab.name)}>
-              <Link to={eachTab.path} className="link-item">
-                {eachTab.name}
-              </Link>
-            </li>
-          ))}
+          <li>
+            <Link to="/" className="nav-item">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/" className="nav-item">
+              BookShelves
+            </Link>
+          </li>
           <li className="sm-nav-item">
             <button
               type="button"
@@ -79,8 +57,6 @@ const Header = props => {
           </li>
         </ul>
       )}
-
-      {/* large screen nav */}
       <nav className="lg-nav">
         <Link to="/" className="bookhub-logo-container">
           <img
@@ -91,17 +67,16 @@ const Header = props => {
           <span className="logo-text">ook Hub</span>
         </Link>
         <ul className="nav-items-container">
-          {tabsList.map(eachTab => (
-            <li
-              onClick={() => onSelectingTab(eachTab.name)}
-              key={eachTab.id}
-              className="link"
-            >
-              <Link className="link-item" to={eachTab.path}>
-                {eachTab.name}
-              </Link>
-            </li>
-          ))}
+          <li>
+            <Link to="/" className="nav-item">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/shelf" className="nav-item">
+              BookShelves
+            </Link>
+          </li>
 
           <li>
             <button type="button" className="logout-button" onClick={onLogOut}>
