@@ -38,24 +38,23 @@ class Home extends Component {
   }
 
   getTopBooks = async () => {
-    try {
-      this.setState({apiStatus: apiStatusConstants.inProgress})
-      const token = Cookies.get('jwt_token')
-      const options = {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+    this.setState({apiStatus: apiStatusConstants.inProgress})
+    const token = Cookies.get('jwt_token')
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
 
-      const response = await fetch(
-        'https://apis.ccbp.in/book-hub/top-rated-books',
-        options,
-      )
-      const data = await response.json()
+    const response = await fetch(
+      'https://apis.ccbp.in/book-hub/top-rated-books',
+      options,
+    )
+    const data = await response.json()
+    if (response.ok) {
       this.onSuccessFullGetFetch(data.books)
-    } catch (error) {
-      console.log(error)
+    } else {
       this.setState({apiStatus: apiStatusConstants.failure})
     }
   }
@@ -90,43 +89,24 @@ class Home extends Component {
             </p>
             <button
               type="button"
-              className="find-books-button"
+              className="sm-find-books-button"
               onClick={onFindingBooks}
             >
               Find Books
             </button>
           </div>
           <div className="top-books-container">
-            <h1 className="top-books-title">Top Rated Books</h1>
-            <BooksSlider booksData={booksData} />
-          </div>
-          <Footer />
-        </div>
-
-        {/* large screen */}
-        <div className="lg-main-section">
-          <div className="top-section-container">
-            <h1 className="top-section-header">
-              Find Your Next Favorite Books?
-            </h1>
-            <p className="top-section-description">
-              You are in the right place. Tell us what titles or genres you have
-              enjoyed in the past, and we will give you surprisingly insightful
-              recommendations.
-            </p>
-          </div>
-          <div className="top-books-container">
             <div className="button-container">
               <h1 className="top-books-title">Top Rated Books</h1>
               <button
                 type="button"
-                className="find-books-button"
+                className="lg-find-books-button"
                 onClick={onFindingBooks}
               >
                 Find Books
               </button>
             </div>
-            <BooksSlider booksData={booksData} />
+            <BooksSlider booksData={booksData} className="book-slider" />
           </div>
           <Footer />
         </div>
@@ -145,7 +125,9 @@ class Home extends Component {
           alt="failure view"
           className="home-wrong-image"
         />
-        <p className="wrong-message">Something went wrong, Please try again.</p>
+        <p className="home-wrong-message">
+          Something went wrong, Please try again.
+        </p>
         <button
           type="button"
           className="home-try-again-button"
@@ -176,14 +158,23 @@ class Home extends Component {
             </p>
             <button
               type="button"
-              className="find-books-button"
+              className="sm-find-books-button"
               onClick={onFindingBooks}
             >
               Find Books
             </button>
           </div>
           <div className="top-books-container">
-            <h2 className="top-books-title">Top Rated Books</h2>
+            <div className="button-container">
+              <h1 className="top-books-title">Top Rated Books</h1>
+              <button
+                type="button"
+                className="lg-find-books-button"
+                onClick={onFindingBooks}
+              >
+                Find Books
+              </button>
+            </div>
             {this.failureComponent()}
           </div>
         </div>

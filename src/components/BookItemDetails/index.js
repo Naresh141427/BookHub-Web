@@ -120,8 +120,8 @@ const BookItemDetails = props => {
     return (
       <div className="book-wrong-container">
         <img
-          src="https://res.cloudinary.com/djugcf64d/image/upload/v1687244321/Group_7484page_not_found_v4cini.png"
-          className="failure view"
+          src="https://res.cloudinary.com/djugcf64d/image/upload/v1682071963/Group_7522_jdxurd.png"
+          className="failure-view"
           alt="failure view"
         />
         <p className="book-wrong-message">

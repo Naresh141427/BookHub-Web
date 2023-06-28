@@ -150,7 +150,14 @@
   margin-bottom: 12px;
   text-align: start;
 }
+.failure-view {
+  height: 150px;
+  width: 300px;
+}
 @media screen and (min-width: 324px) and (max-width: 767px) {
+  .book-wrong-container {
+    background-color: transparent;
+  }
   .book-item-image {
     width: 60%;
     height: 150px;
@@ -287,13 +294,12 @@
 .book-wrong-container {
   display: flex;
   margin-top: 30px;
-  height: 40vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background-color: transparent;
 }
-.book-wrong-image {
+.failure-view {
   height: 60px;
   width: 110px;
 }
@@ -325,7 +331,7 @@
   .book-wrong-container {
     height: 70vh;
   }
-  .book-wrong-image {
+  .failure-view {
     height: 130px;
     width: 200px;
   }
@@ -343,8 +349,9 @@
   .book-wrong-container {
     height: 90vh;
     width: 100%;
+    background-color: #fff;
   }
-  .book-wrong-image {
+  .failure-view {
     height: 230px;
     width: 460px;
   }

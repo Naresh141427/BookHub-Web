@@ -19,7 +19,6 @@ const Header = props => {
 
   return (
     <>
-      {/* mobile nav */}
       <nav className="sm-nav">
         <Link to="/" className="bookhub-logo-container">
           <img
@@ -27,45 +26,9 @@ const Header = props => {
             className="bookhub-logo"
             alt="website logo"
           />
-          <span className="logo-text">Book Hub</span>
-        </Link>
-        <AiOutlineMenu className="menu-icon" onClick={toggleMenu} />
-      </nav>
-      {menuOpen && (
-        <ul className="nav-list-container">
-          <li>
-            <Link to="/" className="nav-item">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/" className="nav-item">
-              BookShelves
-            </Link>
-          </li>
-          <li className="sm-nav-item">
-            <button
-              type="button"
-              className="sm-logout-button"
-              onClick={onLogOut}
-            >
-              Logout
-            </button>
-          </li>
-          <li>
-            <IoIosCloseCircle className="close-icon" onClick={toggleMenu} />
-          </li>
-        </ul>
-      )}
-      <nav className="lg-nav">
-        <Link to="/" className="bookhub-logo-container">
-          <img
-            src="https://res.cloudinary.com/djugcf64d/image/upload/v1680943074/Group_7730_moxigd.png"
-            className="bookhub-logo"
-            alt="bookhub text logo"
-          />
           <span className="logo-text">ook Hub</span>
         </Link>
+        <AiOutlineMenu className="menu-icon" onClick={toggleMenu} />
         <ul className="nav-items-container">
           <li>
             <Link to="/" className="nav-item">
@@ -85,6 +48,34 @@ const Header = props => {
           </li>
         </ul>
       </nav>
+      <>
+        {menuOpen && (
+          <ul className="nav-list-container">
+            <li>
+              <Link to="/" className="nav-item">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/" className="nav-item">
+                BookShelves
+              </Link>
+            </li>
+            <li className="sm-nav-item">
+              <button
+                type="button"
+                className="sm-logout-button"
+                onClick={onLogOut}
+              >
+                Logout
+              </button>
+            </li>
+            <li>
+              <IoIosCloseCircle className="close-icon" onClick={toggleMenu} />
+            </li>
+          </ul>
+        )}
+      </>
     </>
   )
 }

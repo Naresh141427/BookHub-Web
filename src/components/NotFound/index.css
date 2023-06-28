@@ -16,6 +16,7 @@
   font-size: 16px;
   text-align: center;
   color: #334155;
+  margin-bottom: 15px;
 }
 .not-found-description {
   width: 70%;
@@ -27,6 +28,7 @@
   text-align: center;
 
   color: #475569;
+  margin-top: 0;
 }
 .back-home-button {
   font-family: 'Inter';
@@ -61,14 +63,14 @@
 }
 @media screen and (min-width: 768px) {
   .not-found-image {
-    height: 200px;
-    width: 350px;
+    height: 300px;
+    width: 550px;
   }
   .not-found-title {
     font-size: 30px;
   }
   .not-found-description {
-    width: 30%;
+    width: 40%;
     font-size: 20px;
   }
   .back-home-button {
